@@ -7,6 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { WithStyles, withStyles, createStyles, Theme } from '@material-ui/core/styles';
+import AddReminderForm from '../Reminder/AddReminderForm'
 
 const styles = (theme: Theme) => createStyles({
 	addReminderFormContainer: {
@@ -46,9 +47,7 @@ const AddReminder = (props: Props) => {
 				</DialogTitle>
 				<Divider light />
 				<DialogContent className={ classes.addReminderFormContainer }>
-					<Typography>
-						Use this space to create the UI to add a reminder to the calendar.
-					</Typography>
+					<AddReminderForm/>
 				</DialogContent>
 			</Dialog>
 		);
