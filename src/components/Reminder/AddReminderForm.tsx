@@ -3,7 +3,7 @@ import {CirclePicker} from 'react-color';
 import {MuiPickersUtilsProvider, TimePicker, DatePicker} from 'material-ui-pickers';
 import {TextField, Button} from '@material-ui/core'
 import DateFnsUtils from '@date-io/date-fns';
-import {WithStyles, withStyles, createStyles, Theme} from '@material-ui/core/styles';
+import {withStyles, createStyles} from '@material-ui/core/styles';
 import {useForm} from 'react-hook-form'
 
 const styles = (theme) => createStyles({
@@ -32,14 +32,27 @@ const styles = (theme) => createStyles({
     }
 });
 
-const AddReminderForm = (props) => {
-    const {register, handleSubmit, watch, errors} = useForm();
+interface AddReminderFormProps {
+    onAddClick: Function
+    closeHandler: Function
+    classes:any
+}
+
+const AddReminderForm: React.FC<AddReminderFormProps> = ({onAddClick, closeHandler, ...props}) => {
+    const {register, handleSubmit, errors} = useForm();
     const onSubmit = data => {
-        console.log(data)
+        onAddClick({
+            id:'',
+            color:color,
+            start: startDateTime,
+            end: endDateTime,
+            text:text
+        })
+        closeHandler();
     };
     const {classes} = props;
-    const [startDateTime, setStartDateTime] = useState(new Date);
-    const [endDateTime, setEndDateTime] = useState(new Date);
+    const [startDateTime, setStartDateTime] = useState(new Date());
+    const [endDateTime, setEndDateTime] = useState(new Date());
     const [text, setText] = useState('');
     const [color, setColor] = useState('#eee');
 

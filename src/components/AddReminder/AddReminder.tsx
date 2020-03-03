@@ -5,7 +5,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import { WithStyles, withStyles, createStyles, Theme } from '@material-ui/core/styles';
 import AddReminderForm from '../Reminder/AddReminderForm'
 
@@ -26,11 +25,11 @@ const styles = (theme: Theme) => createStyles({
 interface Props extends WithStyles<typeof styles>{
 	isOpen: boolean,
 	onClose: () => void
+	onAddClick: ()=> void
 }
 
 const AddReminder = (props: Props) => {
-		const { classes, isOpen, onClose } = props;
-
+		const { classes, isOpen, onClose, onAddClick } = props;
 		return (
 			<Dialog
 				open={ isOpen }
@@ -47,7 +46,7 @@ const AddReminder = (props: Props) => {
 				</DialogTitle>
 				<Divider light />
 				<DialogContent className={ classes.addReminderFormContainer }>
-					<AddReminderForm/>
+					<AddReminderForm onAddClick={ onAddClick } closeHandler={onClose}/>
 				</DialogContent>
 			</Dialog>
 		);

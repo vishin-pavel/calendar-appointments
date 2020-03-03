@@ -1,15 +1,13 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import AddReminderFormComponent from './AddReminderForm';
-import 'mutationobserver-shim';
 
 describe("AddReminderForm fields exists", () =>{
     let AddReminderForm;
     beforeEach(()=>{
-        AddReminderForm = render(<AddReminderFormComponent />);
+        AddReminderForm = render(<AddReminderFormComponent onAddClick={()=>{}} />);
     });
     test('input field for reminder\'s start date should be available', () => {
-        console.log(AddReminderForm);
         const reminderStartDateInput = AddReminderForm.getByLabelText("Start date", {
             selector: "input"
         });

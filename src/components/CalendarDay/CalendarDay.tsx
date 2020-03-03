@@ -3,6 +3,8 @@ import Avatar from '@material-ui/core/Avatar';
 import deepPurple from '@material-ui/core/colors/deepPurple';
 import { WithStyles, withStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { isSameMonth, isSameDay, getDate } from 'date-fns';
+import ReminderList from "../Reminder/ReminderList";
+import DialogContent from "@material-ui/core/DialogContent";
 
 
 const styles = (theme: Theme) => createStyles({
@@ -54,7 +56,9 @@ const styles = (theme: Theme) => createStyles({
 		backgroundColor: deepPurple[800],
 	},
 	remindersContainer: {
-		height: '100%'
+		height: '100%',
+		overflow: "hidden",
+		paddingLeft: "10px"
 	}
 });
 
@@ -94,7 +98,10 @@ const CalendarDay = (props: Props) => {
 		>
 			<Avatar className={ avatarClass }>{ getDate( dateObj.date ) }</Avatar>
 			<div className={ classes.remindersContainer }>
-				{/* reminders go here */}
+				<div style={{overflow:"hidden"}}>
+					<ReminderList reminders={reminders} ofSmall={true}/>
+				</div>
+
 			</div>
 		</div>
 	)

@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography'
 import { WithStyles, withStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 import * as dateFns from 'date-fns';
+import ReminderList from "../Reminder/ReminderList";
 
 const styles = (theme: Theme) => createStyles({
 	remindersContainer: {
@@ -56,9 +57,7 @@ const AgendaDay = (props: Props) => {
 			</DialogTitle>
 			<Divider light />
 			<DialogContent className={ classes.remindersContainer }>
-				<Typography>
-					Use this space to list the reminders.
-				</Typography>
+				<ReminderList reminders={reminders} ofSmall={false}/>
 			</DialogContent>
 		</Dialog>
 	);
