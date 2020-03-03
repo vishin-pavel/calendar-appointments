@@ -1,7 +1,13 @@
+import moment from "moment";
+
 const getRemindersFromState = (state) => {
-    return state.reminders
+    if (Array.isArray(state.reminders)) {
+        return state.reminders
+    } else {
+        return []
+    }
 }
-export const remindersForDay = (day: Date, state) =>{
+export const getRemindersForDay = (day: Date, state) => {
     const reminders = getRemindersFromState(state);
-    reminders.fiter()
+    return reminders.filter((reminder) => moment(reminder.start).isSame(day, 'day'))
 }

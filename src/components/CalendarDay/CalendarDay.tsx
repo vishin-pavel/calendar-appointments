@@ -70,12 +70,14 @@ interface Props extends WithStyles<typeof styles>{
 	calendarDate: Date,
 	dateObj: DateObj,
 	onDayClick: (dateObj: DateObj) => void
+	reminders:[]
 }
 
 const CalendarDay = (props: Props) => {
-	const { classes, dateObj, calendarDate, onDayClick } = props;
+	const { classes, dateObj, calendarDate, onDayClick, reminders } = props;
 	const [ focused, setFocused ] = useState(false)
 
+	console.log(reminders, dateObj);
 	const isToday = isSameDay( dateObj.date, new Date() );
 	const avatarClass = isToday && focused ? classes.focusedTodayAvatar :
 		isToday ? classes.todayAvatar :

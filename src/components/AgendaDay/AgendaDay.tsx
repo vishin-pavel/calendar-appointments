@@ -35,10 +35,11 @@ interface Props extends WithStyles<typeof styles>{
 		date: Date
 	}
 	onClose: () => void
+	reminders: []
 }
 
 const AgendaDay = (props: Props) => {
-	const { classes, agendaStatus, onClose } = props;
+	const { classes, agendaStatus, onClose, reminders } = props;
 	const dateTitle = agendaStatus.date ? dateFns.format( agendaStatus.date, 'LLLL do, yyyy' ) : 'Closing'
 
 	return (
