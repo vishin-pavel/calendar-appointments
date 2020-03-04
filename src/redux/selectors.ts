@@ -9,5 +9,7 @@ const getRemindersFromState = (state) => {
 }
 export const getRemindersForDay = (day: Date, state) => {
     const reminders = getRemindersFromState(state);
-    return reminders.filter((reminder) => moment(reminder.start).isSame(day, 'day'))
+    let filteredReminders =  reminders.filter((reminder) => moment(reminder.start).isSame(day, 'day'));
+    filteredReminders.sort((a, b)=> moment(a.start).isAfter(b.start)?1:-1);
+    return filteredReminders;
 }

@@ -11,17 +11,21 @@ const styles = (theme: Theme) => createStyles({
 	dayCell: {
 		display: 'flex',
 		flex: '1 0 13%',
-		flexDirection: 'column',
+		flexDirection: 'row',
 		border: '1px solid lightgray',
-		cursor: 'pointer'
+		cursor: 'pointer',
+		overflow: 'hidden',
+		textOverflow: 'ellipsis'
 	},
 	dayCellOutsideMonth: {
 		display: 'flex',
 		flex: '1 0 13%',
-		flexDirection: 'column',
+		flexDirection: 'row',
 		border: '1px solid lightgray',
 		backgroundColor: 'rgba( 211, 211, 211, 0.4 )',
-		cursor: 'pointer'
+		cursor: 'pointer',
+		overflow: 'hidden',
+		textOverflow: 'ellipsis'
 	},
 	dateNumber: {
 		margin: 5,

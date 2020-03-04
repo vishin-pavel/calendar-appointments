@@ -10,8 +10,8 @@ const styles = (theme) => createStyles({
         height: "25%",
         padding: 0,
         "& .reminder-color-circle": {
-            height: "20px",
-            width: "20px",
+            height: "10px",
+            width: "10px",
         }
     },
     primaryText: {
