@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import AgendaDay from './AgendaDay';
 import { closeAgenda } from '../../redux/actions';
+import {getRemindersForDay} from "../../redux/selectors";
 
 interface Props {}
 
@@ -14,7 +15,10 @@ interface State {
 const mapStateToProps = ( state: State, ownProps: Props ) => {
 	const { agendaStatus } = state;
 
-	return { agendaStatus };
+	return {
+		agendaStatus,
+		reminders: getRemindersForDay(agendaStatus.date, state)
+	};
 }
 
 const mapDispatchToProps = (dispatch: any) => {

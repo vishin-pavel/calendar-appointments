@@ -3,23 +3,29 @@ import Avatar from '@material-ui/core/Avatar';
 import deepPurple from '@material-ui/core/colors/deepPurple';
 import { WithStyles, withStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { isSameMonth, isSameDay, getDate } from 'date-fns';
+import ReminderList from "../Reminder/ReminderList";
+import DialogContent from "@material-ui/core/DialogContent";
 
 
 const styles = (theme: Theme) => createStyles({
 	dayCell: {
 		display: 'flex',
 		flex: '1 0 13%',
-		flexDirection: 'column',
+		flexDirection: 'row',
 		border: '1px solid lightgray',
-		cursor: 'pointer'
+		cursor: 'pointer',
+		overflow: 'hidden',
+		textOverflow: 'ellipsis'
 	},
 	dayCellOutsideMonth: {
 		display: 'flex',
 		flex: '1 0 13%',
-		flexDirection: 'column',
+		flexDirection: 'row',
 		border: '1px solid lightgray',
 		backgroundColor: 'rgba( 211, 211, 211, 0.4 )',
-		cursor: 'pointer'
+		cursor: 'pointer',
+		overflow: 'hidden',
+		textOverflow: 'ellipsis'
 	},
 	dateNumber: {
 		margin: 5,
@@ -54,7 +60,9 @@ const styles = (theme: Theme) => createStyles({
 		backgroundColor: deepPurple[800],
 	},
 	remindersContainer: {
-		height: '100%'
+		height: '100%',
+		overflow: "hidden",
+		paddingLeft: "10px"
 	}
 });
 
@@ -66,12 +74,14 @@ interface Props extends WithStyles<typeof styles>{
 	calendarDate: Date,
 	dateObj: DateObj,
 	onDayClick: (dateObj: DateObj) => void
+	reminders:[]
 }
 
 const CalendarDay = (props: Props) => {
-	const { classes, dateObj, calendarDate, onDayClick } = props;
+	const { classes, dateObj, calendarDate, onDayClick, reminders } = props;
 	const [ focused, setFocused ] = useState(false)
 
+	console.log(reminders, dateObj);
 	const isToday = isSameDay( dateObj.date, new Date() );
 	const avatarClass = isToday && focused ? classes.focusedTodayAvatar :
 		isToday ? classes.todayAvatar :
@@ -94,7 +104,10 @@ const CalendarDay = (props: Props) => {
 		>
 			<Avatar className={ avatarClass }>{ getDate( dateObj.date ) }</Avatar>
 			<div className={ classes.remindersContainer }>
-				{/* reminders go here */}
+				<div style={{overflow:"hidden"}}>
+					<ReminderList reminders={reminders} ofSmall={true}/>
+				</div>
+
 			</div>
 		</div>
 	)
